@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;cxx;c;def</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h</Extensions>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Debug">
+      <UniqueIdentifier>{c9ac0eaf-73ac-4fcc-a9a0-1d960dbddf3c}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release">
+      <UniqueIdentifier>{aaa2fbf0-db55-4cb8-8e2f-d4aea7c9214e}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Header Files\Library">
+      <UniqueIdentifier>{bc70000f-a7d0-413e-898a-b279de65eec6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\OtherMethods">
+      <UniqueIdentifier>{09cddc86-84f2-450a-aeac-45ff2f61fec8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Library">
+      <UniqueIdentifier>{9a3f2ec6-b50b-4936-adb3-41699ae63772}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\OtherMethods">
+      <UniqueIdentifier>{c6196220-0896-43cd-a281-4b86d9ab91d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Library\libhmm">
+      <UniqueIdentifier>{86fb05dd-73ab-4d57-a4a7-441a9fe20212}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Library\libpf">
+      <UniqueIdentifier>{1dc9d957-cfd7-4273-913c-6c001caa3c75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Library\libsvm">
+      <UniqueIdentifier>{6c008ba6-b13c-4f15-b710-a73946e7b270}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Library\libhmm">
+      <UniqueIdentifier>{d68b1252-b1a4-4568-9770-96c4d5431304}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Library\libpf">
+      <UniqueIdentifier>{43e5a0cc-d34e-4184-89be-05681d569b01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Library\libsvm">
+      <UniqueIdentifier>{97b6f1af-fff3-418e-ab51-29b7267d9af2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lanechangeestimator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_lanechangeestimator.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_lanechangeestimator.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_lanechangeestimator.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="calcIntgrt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="calcNormalCum.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="database.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="estimator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="featureExtractor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="filter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lineExtractor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="myHmm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mysvm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\libhmm\backwardAlg.cpp">
+      <Filter>Source Files\Library\libhmm</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\libhmm\baumWelch.cpp">
+      <Filter>Source Files\Library\libhmm</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\libhmm\emission.cpp">
+      <Filter>Source Files\Library\libhmm</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\libhmm\forwardAlg.cpp">
+      <Filter>Source Files\Library\libhmm</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\libhmm\viterbi.cpp">
+      <Filter>Source Files\Library\libhmm</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\libpf\bessel.cpp">
+      <Filter>Source Files\Library\libpf</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\libpf\potential.cpp">
+      <Filter>Source Files\Library\libpf</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\libpf\vonMises.cpp">
+      <Filter>Source Files\Library\libpf</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\libsvm-3.20\svm.cpp">
+      <Filter>Source Files\Library\libsvm</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherMethods\mandalia.cpp">
+      <Filter>Source Files\OtherMethods</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherMethods\schlechtriemen.cpp">
+      <Filter>Source Files\OtherMethods</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="lanechangeestimator.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="lanechangeestimator.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="lanechangeestimator.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GeneratedFiles\ui_lanechangeestimator.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="defines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="calcIntgrt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="calcNormalCum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="database.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="estimator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="featureExtractor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lineExtractor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="methodology.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="myHmm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mysvm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\libhmm\backwardAlg.h">
+      <Filter>Header Files\Library\libhmm</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\libhmm\baumWelch.h">
+      <Filter>Header Files\Library\libhmm</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\libhmm\emission.h">
+      <Filter>Header Files\Library\libhmm</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\libhmm\forwardAlg.h">
+      <Filter>Header Files\Library\libhmm</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\libhmm\viterbi.h">
+      <Filter>Header Files\Library\libhmm</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\libpf\bessel.h">
+      <Filter>Header Files\Library\libpf</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\libpf\potential.h">
+      <Filter>Header Files\Library\libpf</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\libpf\vonMises.h">
+      <Filter>Header Files\Library\libpf</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\libsvm-3.20\svm.h">
+      <Filter>Header Files\Library\libsvm</Filter>
+    </ClInclude>
+    <ClInclude Include="OtherMethods\mandalia.h">
+      <Filter>Header Files\OtherMethods</Filter>
+    </ClInclude>
+    <ClInclude Include="OtherMethods\schlechtriemen.h">
+      <Filter>Header Files\OtherMethods</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

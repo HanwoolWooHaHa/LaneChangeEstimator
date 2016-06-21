@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;cxx;c;def</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h</Extensions>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Debug">
+      <UniqueIdentifier>{bed6102c-afd3-4f0d-93c8-d2bcd11b654c}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release">
+      <UniqueIdentifier>{7c27a5b2-9fff-4be8-ab9d-d67a047321b3}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Header Files\Library">
+      <UniqueIdentifier>{b911e77b-cb7f-4da0-80bc-6cfa0b330193}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Library">
+      <UniqueIdentifier>{d79fb80a-9519-4149-b581-07ca8ebfc704}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Library\LibHMM">
+      <UniqueIdentifier>{21dd6342-42b3-4a11-8ec2-0defe85bfbab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Library\LibPF">
+      <UniqueIdentifier>{045dd858-29a6-47c2-a204-18206dc2d846}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Library\LibSVM">
+      <UniqueIdentifier>{f83fab37-d6ea-46e4-9df5-a626990a833d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Library\Math">
+      <UniqueIdentifier>{474a95c1-8959-479f-8b5a-5dcd43dd2ceb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Library\LibHMM">
+      <UniqueIdentifier>{a7dcec75-fc66-4926-bd21-c597cda5d2b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Library\LibPF">
+      <UniqueIdentifier>{ae474fe7-3844-4836-9b84-8261afd5640c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Library\LibSVM">
+      <UniqueIdentifier>{d91dcd14-5f91-4722-ac67-ac59cc9343af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Library\Math">
+      <UniqueIdentifier>{1340666f-5acb-44bd-9f57-77a6dc3ceda7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="realdataplayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_realdataplayer.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_realdataplayer.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_realdataplayer.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_birdView.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_birdView.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_closeView.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_closeView.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_loopManager.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_loopManager.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_myThread.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_myThread.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="birdView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="closeView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="database.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="estimator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="extractor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="filter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lineExtractor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="loopManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mathAlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mySVM.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sensor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\LibHMM\emission.cpp">
+      <Filter>Source Files\Library\LibHMM</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\LibHMM\viterbi.cpp">
+      <Filter>Source Files\Library\LibHMM</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\LibPF\bessel.cpp">
+      <Filter>Source Files\Library\LibPF</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\LibPF\potential.cpp">
+      <Filter>Source Files\Library\LibPF</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\LibPF\vonMises.cpp">
+      <Filter>Source Files\Library\LibPF</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\LibSVM\svm.cpp">
+      <Filter>Source Files\Library\LibSVM</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Math\calcIntgrt.cpp">
+      <Filter>Source Files\Library\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Math\calcNormalCum.cpp">
+      <Filter>Source Files\Library\Math</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="realdataplayer.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="realdataplayer.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="realdataplayer.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="birdView.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="closeView.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="loopManager.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="myThread.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GeneratedFiles\ui_realdataplayer.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="constant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="database.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="estimator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="extractor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="highway.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lineExtractor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mathAlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="method.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mySVM.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sensor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\LibHMM\emission.h">
+      <Filter>Header Files\Library\LibHMM</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\LibHMM\viterbi.h">
+      <Filter>Header Files\Library\LibHMM</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\LibPF\bessel.h">
+      <Filter>Header Files\Library\LibPF</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\LibPF\potential.h">
+      <Filter>Header Files\Library\LibPF</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\LibPF\vonMises.h">
+      <Filter>Header Files\Library\LibPF</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\LibSVM\svm.h">
+      <Filter>Header Files\Library\LibSVM</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Math\calcIntgrt.h">
+      <Filter>Header Files\Library\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Math\calcNormalCum.h">
+      <Filter>Header Files\Library\Math</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
