@@ -304,7 +304,7 @@ int CFeatureExtractor::Extract( int nMode, int nType, int nNumData, void* pRawDa
 			}
 		}
 
-		// 5. Normalize Feature about the distance and the velocity
+		// 5. Scailing of driving features as the distance and the velocity
 		for( int t=0; t<nDataLength; t++ )
 		{
 			pdFeatureData[n][t][FEATURE_PACKET_DISTANCE] = pdFeatureData[n][t][FEATURE_PACKET_DISTANCE] / STD_DISTANCE;

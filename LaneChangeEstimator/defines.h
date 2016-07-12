@@ -34,7 +34,7 @@ enum eMethod{ HMM=0, SVM };
 #define T_MAX 3000
 #define NUM_COLUMN 18
 
-#define NUM_TRAFFIC_DATA 300
+#define NUM_TRAFFIC_DATA 350
 
 #define MAX_Y 3000 // feet
 #define RESOLUTION_LINE_PINT 0.328084

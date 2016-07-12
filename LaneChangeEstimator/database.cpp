@@ -617,7 +617,7 @@ int CDatabase::saveData( int nMode )
 	switch( nMode )
 	{
 	case FEATURE:
-		path = "../../Log/Feature/";
+		path = "../../Log/Feature/LaneChangeEstimator/";
 		nNumData = m_nNumTrafficData;
 		break;
 	}

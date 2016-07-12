@@ -362,7 +362,7 @@ void CMyHmm::saveResult( void )
 void CMyHmm::saveResult(int nVehicleNo, int nIndex, int* pnStateArray)
 {
 	// File–¼‚ðŽw’è‚·‚é
-	QString file = "../../Log/Result/" + QString::number(nVehicleNo) + ".csv";
+	QString file = "../../Log/Result/LaneChangeEstimator/" + QString::number(nVehicleNo) + ".csv";
 
 	QFile* fp = new QFile( file );
 	if( !fp->open(QIODevice::WriteOnly) )
@@ -385,8 +385,16 @@ void CMyHmm::saveResult(int nVehicleNo, int nIndex, int* pnStateArray)
 			dFeature[k] = CDatabase::GetInstance()->GetData(FEATURE, nIndex, t, k);
 			*out << dFeature[k] << ",";
 		}
+
+		int nState = pnStateArray[t];
+
+		switch (nState)
+		{
+		case 1: nState = 4; break;
+		case 4: nState = 1; break;
+		}
 		
-		*out << pnStateArray[t] << endl;
+		*out << nState << endl;
 	}
 
 	fp->close();
