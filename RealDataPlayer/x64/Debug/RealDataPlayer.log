@@ -1,44 +1,11 @@
-﻿2016/06/18 0:57:12 にビルドを開始しました。
-     1>ノード 2 上のプロジェクト "E:\Program\LaneChangeEstimator\RealDataPlayer\RealDataPlayer.vcxproj" (Build ターゲット)。
-     1>CustomBuild:
-         Moc'ing myThread.h...
-         Moc'ing loopManager.h...
-         Moc'ing birdView.h...
-         Moc'ing closeView.h...
+﻿2016/07/12 14:27:11 にビルドを開始しました。
+     1>ノード 3 上のプロジェクト "E:\Program\LaneChangeEstimator\RealDataPlayer\RealDataPlayer.vcxproj" (Build ターゲット)。
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_birdView.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_birdView.cpp, GeneratedFiles\Release\moc_birdView.cpp.
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_closeView.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_closeView.cpp, GeneratedFiles\Release\moc_closeView.cpp.
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_loopManager.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_loopManager.cpp, GeneratedFiles\Release\moc_loopManager.cpp.
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_myThread.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_myThread.cpp, GeneratedFiles\Release\moc_myThread.cpp.
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_realdataplayer.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_realdataplayer.cpp, GeneratedFiles\Release\moc_realdataplayer.cpp.
-       ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I.\GeneratedFiles /I. /IE:\Qt\Qt5.7.0\5.7\msvc2013_64\include /I.\GeneratedFiles\Debug /IE:\Qt\Qt5.7.0\5.7\msvc2013_64\include\QtCore /IE:\Qt\Qt5.7.0\5.7\msvc2013_64\include\QtGui /IE:\Qt\Qt5.7.0\5.7\msvc2013_64\include\QtOpenGL /IE:\Qt\Qt5.7.0\5.7\msvc2013_64\include\QtWidgets /Zi /nologo /W1 /WX- /Od /D UNICODE /D WIN32 /D WIN64 /D QT_DLL /D QT_CORE_LIB /D QT_GUI_LIB /D QT_OPENGL_LIB /D QT_WIDGETS_LIB /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt birdView.cpp closeView.cpp database.cpp estimator.cpp extractor.cpp filter.cpp GeneratedFiles\Debug\moc_birdView.cpp GeneratedFiles\Debug\moc_closeView.cpp GeneratedFiles\Debug\moc_loopManager.cpp GeneratedFiles\Debug\moc_myThread.cpp Library\LibHMM\emission.cpp Library\LibHMM\viterbi.cpp Library\LibPF\bessel.cpp Library\LibPF\potential.cpp Library\LibPF\vonMises.cpp Library\LibSVM\svm.cpp Library\Math\calcIntgrt.cpp Library\Math\calcNormalCum.cpp lineExtractor.cpp loopManager.cpp mathAlg.cpp mySVM.cpp sensor.cpp
-         birdView.cpp
-         closeView.cpp
-         database.cpp
-         estimator.cpp
-         extractor.cpp
-         filter.cpp
-         moc_birdView.cpp
-         moc_closeView.cpp
-         moc_loopManager.cpp
-         moc_myThread.cpp
-         emission.cpp
-         viterbi.cpp
-         bessel.cpp
-         potential.cpp
-         vonMises.cpp
-         svm.cpp
-         calcIntgrt.cpp
-         calcNormalCum.cpp
-         lineExtractor.cpp
-         loopManager.cpp
-         コードを生成中...
-         コンパイル中...
-         mathAlg.cpp
-         mySVM.cpp
-         sensor.cpp
-         コードを生成中...
-       Link:
+     1>Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"E:\Program\LaneChangeEstimator\x64\Debug\\RealDataPlayer.exe" /NOLOGO /LIBPATH:E:\Qt\Qt5.7.0\5.7\msvc2013_64\lib qtmaind.lib Qt5Cored.lib Qt5Guid.lib Qt5OpenGLd.lib opengl32.lib glu32.lib Qt5Widgetsd.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\Program\LaneChangeEstimator\x64\Debug\RealDataPlayer.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\Program\LaneChangeEstimator\x64\Debug\RealDataPlayer.lib" /MACHINE:X64 x64\Debug\birdView.obj
          x64\Debug\closeView.obj
          x64\Debug\database.obj
@@ -71,4 +38,4 @@
 
 ビルドに成功しました。
 
-経過時間 00:00:11.52
+経過時間 00:00:01.51

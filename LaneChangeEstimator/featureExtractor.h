@@ -50,7 +50,7 @@ private:
 
 	int makeAdjacentVehicleList( int nMode, int nDataIndex, void* pRawData, void* pDataInfo );
 
-	int calculateVehicleGap( int nTime, int nMode, int nDataIndex, void* pRawData, void* pDataInfo, double* dGap );
+	int calculateVehicleGap( int nTime, int nMode, int nType, int nDataIndex, void* pRawData, void* pDataInfo, double* dGap );
 
 	void initializeAdjData( void );
 

@@ -9,6 +9,7 @@
 #include "lineExtractor.h"
 #include "calcNormalCum.h"
 #include "Library\libpf\potential.h"
+#include "driverAdaptive.h"
 
 #include <qdebug.h>
 #include <qfile.h>
@@ -59,7 +60,6 @@ int CFeatureExtractor::Extract( int nMode, int nType, int nNumData, void* pRawDa
 		else // nType == KEEPING
 		{
 			nCenterLine = pdRawData[n][0][DATA_PACKET_LANE]-1;
-			if( nCenterLine == 4 ) nCenterLine = 3;
 		}
 		////////////////////////////////////////////////////////////////////////
 
@@ -95,36 +95,37 @@ int CFeatureExtractor::Extract( int nMode, int nType, int nNumData, void* pRawDa
 		if( FEATURE_VECTOR_DIMENSION > 2 )
 		{
 			initializeAdjData();
-			makeAdjacentVehicleList( nMode, n, pRawData, pDataInfo );
+			makeAdjacentVehicleList(nMode, n, pRawData, pDataInfo);
 
 			qDebug() << " featureExtractor.cpp @ Vehicle No." << nVehicleNo << "  - Adj. Vehicles : " << m_nNumAdjacentVehicles;
 
-			for( int t=0; t<nDataLength; t++ )
+			for (int t = 0; t < nDataLength; t++)
 			{
 				double dGap[12] = { 0.0 }; // 0: lead vehicle no 1: gap lead 2: rel vel lead 3: lag vehicle no 4: gap lag 5: rel vel lag
-				                                            // 6: preceding vehicle no 7: gap preceding 8: rel vel preceding 9:following vehicle no 10: gap following 11: rel vel following
-				calculateVehicleGap( t, nMode, n, pRawData, pDataInfo, dGap );
+				// 6: preceding vehicle no 7: gap preceding 8: rel vel preceding 9:following vehicle no 10: gap following 11: rel vel following
 
-				if( dGap[0] == 0.0 )
+				calculateVehicleGap(t, nMode, nType, n, pRawData, pDataInfo, dGap);
+
+				if (dGap[0] == 0.0)
 				{
 					dGap[1] = SENSING_AREA + 0.1;
 					dGap[2] = 0.0;
 				}
 
-				if( dGap[3] == 0.0 )
+				if (dGap[3] == 0.0)
 				{
 					dGap[4] = SENSING_AREA + 0.1;
 					dGap[5] = 0.0;
 				}
 
-				if( FEATURE_VECTOR_DIMENSION == 6 )
+				if (FEATURE_VECTOR_DIMENSION == 6)
 				{
 					pdFeatureData[n][t][FEATURE_PACKET_LEAD_GAP] = dGap[1];
 					pdFeatureData[n][t][FEATURE_PACKET_LEAD_REL_VEL] = dGap[2];
 					pdFeatureData[n][t][FEATURE_PACKET_LAG_GAP] = dGap[4];
 					pdFeatureData[n][t][FEATURE_PACKET_LAG_REL_VEL] = dGap[5];
 				}
-				else if( FEATURE_VECTOR_DIMENSION == 4 )
+				else if (FEATURE_VECTOR_DIMENSION == 4)
 				{
 					double dRelVelForLead = dGap[2] * FEET_TO_METER; // v_L [m/s]
 					double dRelVelForRear = dGap[5] * FEET_TO_METER; // v_R [m/s]
@@ -141,29 +142,29 @@ int CFeatureExtractor::Extract( int nMode, int nType, int nNumData, void* pRawDa
 					double dPotentialP = 0.0;
 					double dPotentialF = 0.0;
 
-					if( dGap[0] != 0.0 )
-						dPotentialL = CPotential::GetInstance()->Field( dGapForLead, dRelVelForLead, 180.0 );
+					if (dGap[0] != 0.0)
+						dPotentialL = CPotential::GetInstance()->Field(dGapForLead, dRelVelForLead, 180.0);
 
-					if( dGap[3] != 0.0 )
-						dPotentialR = CPotential::GetInstance()->Field( dGapForRear, dRelVelForRear, 0.0 );
+					if (dGap[3] != 0.0)
+						dPotentialR = CPotential::GetInstance()->Field(dGapForRear, dRelVelForRear, 0.0);
 
-					if( dGap[6] != 0.0 )
-						dPotentialP = CPotential::GetInstance()->Field( dGapForPreceding, dRelVelForPreceding, 180.0 );
+					if (dGap[6] != 0.0)
+						dPotentialP = CPotential::GetInstance()->Field(dGapForPreceding, dRelVelForPreceding, 180.0);
 
-					if( dGap[9] != 0.0 )
-						dPotentialF = CPotential::GetInstance()->Field( dGapForFollowing, dRelVelForFollowing, 0.0 );
+					if (dGap[9] != 0.0)
+						dPotentialF = CPotential::GetInstance()->Field(dGapForFollowing, dRelVelForFollowing, 0.0);
 
 					double dPotentialC = dPotentialP + dPotentialF; // Potential in Current Lane
 					double dPotentialN = dPotentialL + dPotentialR; // Potential in Next Lane
-	
+
 					double dRatio = 0.0;
 					double dProb_LC = 0.0;
-					if( dPotentialN == 0.0 && dPotentialC != 0.0 )
+					if (dPotentialN == 0.0 && dPotentialC != 0.0)
 					{
 						dRatio = DBL_MAX;
 						dProb_LC = 1.0;
 					}
-					else if( dPotentialN == 0.0 && dPotentialC == 0.0 )
+					else if (dPotentialN == 0.0 && dPotentialC == 0.0)
 					{
 						dProb_LC = 0.5;
 					}
@@ -171,18 +172,18 @@ int CFeatureExtractor::Extract( int nMode, int nType, int nNumData, void* pRawDa
 					{
 						dRatio = dPotentialC / dPotentialN;
 
-						if( dRatio >= 100.0 )
+						if (dRatio >= 100.0)
 							dProb_LC = 1.0;
-						else if( dRatio == 0.0 )
+						else if (dRatio == 0.0)
 							dProb_LC = 0.0;
 						else
-							dProb_LC = CNormalCum::GetInstance()->CumNormal( qLn( dRatio ) );
+							dProb_LC = CNormalCum::GetInstance()->CumNormal(qLn(dRatio));
 					}
 
 					pdFeatureData[n][t][FEATURE_PACKET_LEAD_PROB_GAP] = dPotentialC;
 					pdFeatureData[n][t][FEATURE_PACKET_LAG_PROB_GAP] = dPotentialN;
 				}
-				else if( FEATURE_VECTOR_DIMENSION == 3 )
+				else if (FEATURE_VECTOR_DIMENSION == 3)
 				{
 					double dRelVelForLead = dGap[2] * FEET_TO_METER; // v_L [m/s]
 					double dRelVelForRear = dGap[5] * FEET_TO_METER; // v_R [m/s]
@@ -199,29 +200,29 @@ int CFeatureExtractor::Extract( int nMode, int nType, int nNumData, void* pRawDa
 					double dPotentialP = 0.0;
 					double dPotentialF = 0.0;
 
-					if( dGap[0] != 0.0 )
-						dPotentialL = CPotential::GetInstance()->Field( dGapForLead, dRelVelForLead, 180.0 );
+					if (dGap[0] != 0.0)
+						dPotentialL = CPotential::GetInstance()->Field(dGapForLead, dRelVelForLead, 180.0);
 
-					if( dGap[3] != 0.0 )
-						dPotentialR = CPotential::GetInstance()->Field( dGapForRear, dRelVelForRear, 0.0 );
+					if (dGap[3] != 0.0)
+						dPotentialR = CPotential::GetInstance()->Field(dGapForRear, dRelVelForRear, 0.0);
 
-					if( dGap[6] != 0.0 )
-						dPotentialP = CPotential::GetInstance()->Field( dGapForPreceding, dRelVelForPreceding, 180.0 );
+					if (dGap[6] != 0.0)
+						dPotentialP = CPotential::GetInstance()->Field(dGapForPreceding, dRelVelForPreceding, 180.0);
 
-					if( dGap[9] != 0.0 )
-						dPotentialF = CPotential::GetInstance()->Field( dGapForFollowing, dRelVelForFollowing, 0.0 );
+					if (dGap[9] != 0.0)
+						dPotentialF = CPotential::GetInstance()->Field(dGapForFollowing, dRelVelForFollowing, 0.0);
 
 					double dPotentialC = dPotentialP + dPotentialF; // Potential in Current Lane
 					double dPotentialN = dPotentialL + dPotentialR; // Potential in Next Lane
-	
+
 					double dRatio = 0.0;
 					double dProb_LC = 0.0;
-					if( dPotentialN == 0.0 && dPotentialC != 0.0 )
+					if (dPotentialN == 0.0 && dPotentialC != 0.0)
 					{
 						dRatio = DBL_MAX;
 						dProb_LC = 1.0;
 					}
-					else if( dPotentialN == 0.0 && dPotentialC == 0.0 )
+					else if (dPotentialN == 0.0 && dPotentialC == 0.0)
 					{
 						dProb_LC = 0.5;
 					}
@@ -229,17 +230,17 @@ int CFeatureExtractor::Extract( int nMode, int nType, int nNumData, void* pRawDa
 					{
 						dRatio = dPotentialC / dPotentialN;
 
-						if( dRatio >= 100.0 )
+						if (dRatio >= 100.0)
 							dProb_LC = 1.0;
-						else if( dRatio == 0.0 )
+						else if (dRatio == 0.0)
 							dProb_LC = 0.0;
 						else
-							dProb_LC = CNormalCum::GetInstance()->CumNormal( qLn( dRatio ) );
+							dProb_LC = CNormalCum::GetInstance()->CumNormal(qLn(dRatio));
 					}
 
 					pdFeatureData[n][t][FEATURE_PACKET_PROB_GAP] = dProb_LC;
 				}
-				else if( FEATURE_VECTOR_DIMENSION == 2 )
+				else if (FEATURE_VECTOR_DIMENSION == 2)
 				{
 					double dRelVelForLead = dGap[2] * FEET_TO_METER; // v_L [m/s]
 					double dRelVelForRear = dGap[5] * FEET_TO_METER; // v_R [m/s]
@@ -256,29 +257,29 @@ int CFeatureExtractor::Extract( int nMode, int nType, int nNumData, void* pRawDa
 					double dPotentialP = 0.0;
 					double dPotentialF = 0.0;
 
-					if( dGap[0] != 0.0 )
-						dPotentialL = CPotential::GetInstance()->Field( dGapForLead, dRelVelForLead, 180.0 );
+					if (dGap[0] != 0.0)
+						dPotentialL = CPotential::GetInstance()->Field(dGapForLead, dRelVelForLead, 180.0);
 
-					if( dGap[3] != 0.0 )
-						dPotentialR = CPotential::GetInstance()->Field( dGapForRear, dRelVelForRear, 0.0 );
+					if (dGap[3] != 0.0)
+						dPotentialR = CPotential::GetInstance()->Field(dGapForRear, dRelVelForRear, 0.0);
 
-					if( dGap[6] != 0.0 )
-						dPotentialP = CPotential::GetInstance()->Field( dGapForPreceding, dRelVelForPreceding, 180.0 );
+					if (dGap[6] != 0.0)
+						dPotentialP = CPotential::GetInstance()->Field(dGapForPreceding, dRelVelForPreceding, 180.0);
 
-					if( dGap[9] != 0.0 )
-						dPotentialF = CPotential::GetInstance()->Field( dGapForFollowing, dRelVelForFollowing, 0.0 );
+					if (dGap[9] != 0.0)
+						dPotentialF = CPotential::GetInstance()->Field(dGapForFollowing, dRelVelForFollowing, 0.0);
 
 					double dPotentialC = dPotentialP + dPotentialF; // Potential in Current Lane
 					double dPotentialN = dPotentialL + dPotentialR; // Potential in Next Lane
-	
+
 					double dRatio = 0.0;
 					double dProb_LC = 0.0;
-					if( dPotentialN == 0.0 && dPotentialC != 0.0 )
+					if (dPotentialN == 0.0 && dPotentialC != 0.0)
 					{
 						dRatio = DBL_MAX;
 						dProb_LC = 1.0;
 					}
-					else if( dPotentialN == 0.0 && dPotentialC == 0.0 )
+					else if (dPotentialN == 0.0 && dPotentialC == 0.0)
 					{
 						dProb_LC = 0.5;
 					}
@@ -286,12 +287,12 @@ int CFeatureExtractor::Extract( int nMode, int nType, int nNumData, void* pRawDa
 					{
 						dRatio = dPotentialC / dPotentialN;
 
-						if( dRatio >= 100.0 )
+						if (dRatio >= 100.0)
 							dProb_LC = 1.0;
-						else if( dRatio == 0.0 )
+						else if (dRatio == 0.0)
 							dProb_LC = 0.0;
 						else
-							dProb_LC = CNormalCum::GetInstance()->CumNormal( qLn( dRatio ) );
+							dProb_LC = CNormalCum::GetInstance()->CumNormal(qLn(dRatio));
 					}
 
 					m_dProbability[n][t] = dProb_LC;
@@ -310,6 +311,9 @@ int CFeatureExtractor::Extract( int nMode, int nType, int nNumData, void* pRawDa
 			pdFeatureData[n][t][FEATURE_PACKET_DISTANCE] = pdFeatureData[n][t][FEATURE_PACKET_DISTANCE] / STD_DISTANCE;
 			pdFeatureData[n][t][FEATURE_PACKET_LAT_VELOCITY] = pdFeatureData[n][t][FEATURE_PACKET_LAT_VELOCITY] / STD_VELOCITY;
 		}
+
+		// 6. Adjust feature data w.r.t a target driver
+		CDriverAdaptive::Adjust(n, nDataLength, reinterpret_cast<void*>(pdFeatureData));
 		
 		////////////////////////////////////////////////////////////////////////
 
@@ -333,6 +337,8 @@ int CFeatureExtractor::Extract( int nMode, int nType, int nNumData, void* pRawDa
 			//pdStateTransition[nPreState][nCurrentState]++;
 		}
 	}
+
+	qDebug() << "featureExtactor.cpp @ Avg.Std : " << CDriverAdaptive::dAvgStandardDeviation[0] / nNumData << ",  Avg.Std2 : " << CDriverAdaptive::dAvgStandardDeviation[1] / nNumData;
 
 	qDebug() << " featureExtractor.cpp @ Extraction of features was completed";
 
@@ -668,7 +674,7 @@ void CFeatureExtractor::initializeAdjData( void )
 	memset( m_dAdjacentVehiclesData, 0, sizeof( double ) * MAX_ADJACENT * T_MAX * NUM_ADJACENT_COLUMN );
 }
 
-int CFeatureExtractor::calculateVehicleGap( int nTime, int nMode, int nDataIndex, void* pRawData, void* pDataInfo, double* dGap )
+int CFeatureExtractor::calculateVehicleGap( int nTime, int nMode, int nType, int nDataIndex, void* pRawData, void* pDataInfo, double* dGap )
 {
 	double (*pdRawData)[T_MAX][NUM_COLUMN] = reinterpret_cast<double(*)[T_MAX][NUM_COLUMN]>(pRawData);
 	int (*pnDataInfo)[5] = reinterpret_cast<int(*)[5]>(pDataInfo);
@@ -696,7 +702,13 @@ int CFeatureExtractor::calculateVehicleGap( int nTime, int nMode, int nDataIndex
 			continue;
 
 		int nEndTime = pnDataInfo[nDataIndex][DATA_INFO_PACKET_DATA_LENGTH] - 1;
-		int nTgtLane = pdRawData[nDataIndex][nEndTime][DATA_PACKET_LANE];
+
+		int nTgtLane = 0;
+		if (nType == CHANGING)
+			nTgtLane = pdRawData[nDataIndex][nEndTime][DATA_PACKET_LANE];
+		else
+			nTgtLane = pdRawData[nDataIndex][0][DATA_PACKET_LANE] + 1;
+
 		int nCurrentLane = pdRawData[nDataIndex][nTime][DATA_PACKET_LANE];
 		int nVehicleNo = m_nAdjDataInfo[n][0];
 

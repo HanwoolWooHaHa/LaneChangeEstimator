@@ -141,6 +141,7 @@
     <ClCompile Include="calcIntgrt.cpp" />
     <ClCompile Include="calcNormalCum.cpp" />
     <ClCompile Include="database.cpp" />
+    <ClCompile Include="driverAdaptive.cpp" />
     <ClCompile Include="estimator.cpp" />
     <ClCompile Include="featureExtractor.cpp" />
     <ClCompile Include="filter.cpp" />
@@ -224,6 +225,7 @@
     <ClInclude Include="calcNormalCum.h" />
     <ClInclude Include="database.h" />
     <ClInclude Include="defines.h" />
+    <ClInclude Include="driverAdaptive.h" />
     <ClInclude Include="estimator.h" />
     <ClInclude Include="featureExtractor.h" />
     <ClInclude Include="filter.h" />

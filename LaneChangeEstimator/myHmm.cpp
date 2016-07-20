@@ -387,12 +387,6 @@ void CMyHmm::saveResult(int nVehicleNo, int nIndex, int* pnStateArray)
 		}
 
 		int nState = pnStateArray[t];
-
-		switch (nState)
-		{
-		case 1: nState = 4; break;
-		case 4: nState = 1; break;
-		}
 		
 		*out << nState << endl;
 	}

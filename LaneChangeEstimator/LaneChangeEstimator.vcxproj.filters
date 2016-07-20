@@ -140,6 +140,9 @@
     <ClCompile Include="OtherMethods\schlechtriemen.cpp">
       <Filter>Source Files\OtherMethods</Filter>
     </ClCompile>
+    <ClCompile Include="driverAdaptive.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="lanechangeestimator.h">
@@ -221,6 +224,9 @@
     </ClInclude>
     <ClInclude Include="OtherMethods\schlechtriemen.h">
       <Filter>Header Files\OtherMethods</Filter>
+    </ClInclude>
+    <ClInclude Include="driverAdaptive.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

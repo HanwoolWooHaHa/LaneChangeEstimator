@@ -53,7 +53,7 @@ int CDatabase::LoadData( int nMode, int nType )
 		break;
 
 	case TESTER:
-		LoadStateTransitionMatrix();
+		//LoadStateTransitionMatrix();
 		nReturn = loadTrafficData( nMode, nType );
 		break;
 
@@ -535,8 +535,40 @@ int CDatabase::loadTrafficData( int nMode, int nType )
 			}
         }
 
+		int nDataLength = t;
+		int nStartLane = m_dTrafficData[m_nNumTrafficData][0][DATA_PACKET_LANE];
+		
+		if (nType == CHANGING)
+		{
+			int nGroundTruth = nDataLength;
+			for (int tt = 0; tt < nDataLength; tt++)
+			{
+				if (m_dTrafficData[m_nNumTrafficData][tt][DATA_PACKET_LANE] != nStartLane)
+				{
+					nGroundTruth = tt;
+					break;
+				}
+			}
+
+			if (nGroundTruth < 350)
+			{
+				delete m_pOpenFile;
+				continue;
+			}
+		}
+		else // nType == KEEPING
+		{
+			int nLane = m_dTrafficData[m_nNumTrafficData][0][DATA_PACKET_LANE];
+
+			if (nLane >= 5)
+			{
+				delete m_pOpenFile;
+				continue;
+			}
+		}
+
 		m_nDataInfo[m_nNumTrafficData][DATA_INFO_PACKET_VEHICLE_NO] = m_dTrafficData[m_nNumTrafficData][0][0]; // vehicle no.
-		m_nDataInfo[m_nNumTrafficData][DATA_INFO_PACKET_DATA_LENGTH] = t; // the data length
+		m_nDataInfo[m_nNumTrafficData][DATA_INFO_PACKET_DATA_LENGTH] = nDataLength; // the data length
 
 		m_nNumTrafficData++;
 		if( m_nNumTrafficData >= NUM_TRAFFIC_DATA )
