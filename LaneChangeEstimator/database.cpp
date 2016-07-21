@@ -550,7 +550,7 @@ int CDatabase::loadTrafficData( int nMode, int nType )
 				}
 			}
 
-			if (nGroundTruth < 350)
+			if (nGroundTruth < MEASUREMENT_TIME)
 			{
 				delete m_pOpenFile;
 				continue;

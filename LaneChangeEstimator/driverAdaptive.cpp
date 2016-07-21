@@ -7,12 +7,12 @@
 */
 
 #include "driverAdaptive.h"
-#include "defines.h"
 
 #include <qmath.h>
 
 double CDriverAdaptive::m_dStandardDeviation[2] = { 0.0 };
 double CDriverAdaptive::dAvgStandardDeviation[2] = { 0.0 };
+double CDriverAdaptive::m_dReEstimatedAverage[NUM_TRAFFIC_DATA][FEATURE_VECTOR_DIMENSION] = { 0.0 };
 
 CDriverAdaptive::CDriverAdaptive()
 {
@@ -70,7 +70,7 @@ void CDriverAdaptive::Adjust(int nDataNo, int nDataLength, void* pvData)
 }
 #endif
 
-#if 1
+#if 0
 void CDriverAdaptive::Adjust(int nDataNo, int nDataLength, void* pvData)
 {
 	m_dStandardDeviation[0] = 0.146171; //0.175307; //0.0991196; //
@@ -154,11 +154,38 @@ void CDriverAdaptive::Adjust(int nDataNo, int nDataLength, void* pvData)
 		double dRate1 = qAbs(m_dStandardDeviation[0] / dNewAdjustStd1);
 		double dRate2 = qAbs(m_dStandardDeviation[1] / dNewAdjustStd2);
 
-		pdFeatureData[nDataNo][t][FEATURE_PACKET_DISTANCE] = dDistance + dRate1 * (dDistance - dAvg[FEATURE_PACKET_DISTANCE]);
-		pdFeatureData[nDataNo][t][FEATURE_PACKET_LAT_VELOCITY] = dVelocity + dRate2 * (dVelocity - dAvg[FEATURE_PACKET_LAT_VELOCITY]);
+		pdFeatureData[nDataNo][t][FEATURE_PACKET_DISTANCE] = dDistance / dAvg[FEATURE_PACKET_DISTANCE]; //+ dRate1 * (dDistance - dAvg[FEATURE_PACKET_DISTANCE]);
+		pdFeatureData[nDataNo][t][FEATURE_PACKET_LAT_VELOCITY] = dVelocity / dAvg[FEATURE_PACKET_LAT_VELOCITY]; //+ dRate2 * (dVelocity - dAvg[FEATURE_PACKET_LAT_VELOCITY]);
 
 		dAdjustStd1 = dNewAdjustStd1;
 		dAdjustStd2 = dNewAdjustStd2;
 	}
 }
 #endif
+
+void CDriverAdaptive::Adjust(int nDataNo, int nDataLength, void* pvData)
+{
+	double(*pdFeatureData)[T_MAX][FEATURE_VECTOR_DIMENSION] = reinterpret_cast<double(*)[T_MAX][FEATURE_VECTOR_DIMENSION]>(pvData);
+
+	int nTrainingPeriod = MEASUREMENT_TIME - 50;
+
+	double dSum[FEATURE_VECTOR_DIMENSION] = { 0.0 };
+	double dAvg[FEATURE_VECTOR_DIMENSION] = { 0.0 };
+	double dStd[FEATURE_VECTOR_DIMENSION] = { 0.0 };
+
+	//! Calculate a standard deviation for 8 sec.
+	for (int t = 0; t < nTrainingPeriod; t++)
+	{
+		double dDistance = pdFeatureData[nDataNo][t][FEATURE_PACKET_DISTANCE];
+		double dVelocity = pdFeatureData[nDataNo][t][FEATURE_PACKET_LAT_VELOCITY];
+
+		dSum[FEATURE_PACKET_DISTANCE] += dDistance;
+		dSum[FEATURE_PACKET_LAT_VELOCITY] += dVelocity;
+	}
+
+	dAvg[FEATURE_PACKET_DISTANCE] = dSum[FEATURE_PACKET_DISTANCE] / nTrainingPeriod;
+	dAvg[FEATURE_PACKET_LAT_VELOCITY] = dSum[FEATURE_PACKET_LAT_VELOCITY] / nTrainingPeriod;
+
+	m_dReEstimatedAverage[nDataNo][FEATURE_PACKET_DISTANCE] = dAvg[FEATURE_PACKET_DISTANCE];
+	m_dReEstimatedAverage[nDataNo][FEATURE_PACKET_LAT_VELOCITY] = dAvg[FEATURE_PACKET_LAT_VELOCITY];
+}

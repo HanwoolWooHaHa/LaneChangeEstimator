@@ -313,7 +313,7 @@ int CFeatureExtractor::Extract( int nMode, int nType, int nNumData, void* pRawDa
 		}
 
 		// 6. Adjust feature data w.r.t a target driver
-		CDriverAdaptive::Adjust(n, nDataLength, reinterpret_cast<void*>(pdFeatureData));
+		//CDriverAdaptive::Adjust(n, nDataLength, reinterpret_cast<void*>(pdFeatureData));
 		
 		////////////////////////////////////////////////////////////////////////
 
@@ -338,7 +338,7 @@ int CFeatureExtractor::Extract( int nMode, int nType, int nNumData, void* pRawDa
 		}
 	}
 
-	qDebug() << "featureExtactor.cpp @ Avg.Std : " << CDriverAdaptive::dAvgStandardDeviation[0] / nNumData << ",  Avg.Std2 : " << CDriverAdaptive::dAvgStandardDeviation[1] / nNumData;
+	//qDebug() << "featureExtactor.cpp @ Avg.Std : " << CDriverAdaptive::dAvgStandardDeviation[0] / nNumData << ",  Avg.Std2 : " << CDriverAdaptive::dAvgStandardDeviation[1] / nNumData;
 
 	qDebug() << " featureExtractor.cpp @ Extraction of features was completed";
 

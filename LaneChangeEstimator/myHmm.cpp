@@ -9,6 +9,7 @@
 #include "database.h"
 #include "Library\libhmm\baumWelch.h"
 #include "Library\libhmm\viterbi.h"
+#include "driverAdaptive.h"
 
 #include <QTime>
 #include <QDebug>
@@ -208,6 +209,9 @@ void CMyHmm::testUsingStateHmm( void )
 		int nEstimatedTime = 0;
 		int nDelta = 0;
 		CViterbi::GetInstance()->ResetStateSeq();
+
+		//double dCheck1 = m_pHmm->EMIS[0][FEATURE_PACKET_DISTANCE][0] = CDriverAdaptive::GetReEstimatedAverage(n, FEATURE_PACKET_DISTANCE);
+		//double dCheck2 = m_pHmm->EMIS[0][FEATURE_PACKET_LAT_VELOCITY][0] = CDriverAdaptive::GetReEstimatedAverage(n, FEATURE_PACKET_LAT_VELOCITY);
 
 		// „’èŒ‹‰Ê‚ğ‹L˜^‚·‚é”z—ñ‚ğ¶¬‚·‚é
 		int* pnStateArray = new int[nDataLength];
